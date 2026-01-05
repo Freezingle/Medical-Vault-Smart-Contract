@@ -1,17 +1,18 @@
-import hre from "hardhat";
+import hre from 'hardhat'
+import { error } from 'node:console'
 
 async function main() {
-  const [deployer] = await hre.ethers.getSigners();
-  console.log("Deploying contract with account:", deployer.address);
-
-  const Vault = await hre.ethers.getContractFactory("MedicalRecordVault");
-  const vault = await Vault.deploy();
-  await vault.deployed();
-
-  console.log("MedicalRecordVault deployed at:", vault.address);
+  const [deployer] = await hre.ethers.getSigners()
+  console.log('Deploying contracts with the account:', deployer.address)
+    const Vault = await hre.ethers.getContractFactory('MedicalRecordVault')
+    const vault = await Vault.deploy()
+    await vault.waitForDeployment()
+    address= vault.getAddress()
+    console.log('MedicalRecordVault deployed to:',address)
+  
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+main().catch((error) => {
+  console.error(error)
+  process.exit(1)
+})
