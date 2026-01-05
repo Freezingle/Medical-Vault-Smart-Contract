@@ -4,6 +4,9 @@
 # Compilation output
 /dist
 
+#environment variables
+.env
+
 # pnpm deploy output
 /bundle
 
